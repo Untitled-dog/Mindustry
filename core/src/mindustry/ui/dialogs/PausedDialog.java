@@ -37,7 +37,7 @@ public class PausedDialog extends BaseDialog{
 
             if(!state.isCampaign() && !state.isEditor()){
                 cont.row();
-                cont.button("@savegame", Icon.save, save::show);
+                cont.button("@savegame", Icon.save, save::show).disabled(b -> (net.active() && !net.server())));
                 cont.button("@loadgame", Icon.upload, load::show).disabled(b -> net.active());
             }
 
@@ -65,7 +65,7 @@ public class PausedDialog extends BaseDialog{
             cont.buttonRow("@settings", Icon.settings, ui.settings::show);
 
             if(!state.isCampaign() && !state.isEditor()){
-                cont.buttonRow("@save", Icon.save, save::show);
+                cont.buttonRow("@save", Icon.save, save::show).disabled(b -> net.active());
 
                 cont.row();
 
